@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-      @tasks = Task.all
+      @tasks = Task.all.page(params[:page])
   end
 
   def show
@@ -15,7 +15,7 @@ class TasksController < ApplicationController
       @tasks = Task.new(task_params)
       
       if @tasks.save
-          flash[:success] = 'Task が正常に登録されました'
+          flash[:success] = 'Taskが正常に登録されました'
           redirect_to @tasks
       else 
           flash.now[:danger]= 'Taskが正常に登録されませんでした'

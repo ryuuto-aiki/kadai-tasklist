@@ -1,8 +1,20 @@
-<h1>id :<%= @tasks.id %>の詳細ページ</h1>
+<h1>id: <%= @tasks.id %> のメッセージ詳細ページ</h1>
 
-<p><%= @tasks.content %></p>
-<p><%= @tasks.status %></p>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @tasks.id %></td>
+  </tr>
+  <tr>
+    <th>Task</th>
+    <td><%= @tasks.content %></td>
+  </tr>
+  <tr>
+    <th>ステータス</th>
+    <td><%= @tasks.status %></td>
+  </tr>
+</table>
 
-<%= link_to '一覧に戻る', tasks_path %>
-<%= link_to 'この登録を編集する', edit_task_path(@tasks) %>
-<%= link_to 'この登録を削除する', @tasks, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+
+<%= link_to 'この登録を編集する', edit_task_path(@tasks), class: 'btn btn-light' %>
+<%= link_to 'この登録を削除する', @tasks, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
