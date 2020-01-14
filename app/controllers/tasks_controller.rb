@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-      @tasks = Task.all.page(params[:page])
+      @tasks = Task.all.page(params[:page]).per(10)
   end
 
   def show
