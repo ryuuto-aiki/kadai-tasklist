@@ -15,12 +15,12 @@ class TasksController < ApplicationController
   end
 
   def create
-      @tasks = Task.new(task_params)
-      
+      @tasks = current_user.tasks.build(task_params)
       if @tasks.save
           flash[:success] = 'Taskが正常に登録されました'
           redirect_to @tasks
       else 
+          @task = current_user.tasks.order(id: :desc).page(params[:page])
           flash.now[:danger]= 'Taskが正常に登録されませんでした'
           render :new
       end
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-      @tasks = Task.find(params[:id])
+    @tasks = Task.find(params[:id])
     @tasks.destroy
 
     flash[:success] = 'Task は正常に削除されました'
